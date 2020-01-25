@@ -47,5 +47,6 @@ RUN chmod 755 /usr/local/bin/repo
 
 RUN useradd builder --create-home --home-dir=/src --user-group
 
-USER builder
+ENV USER builder
+USER ${USER}
 WORKDIR /src
