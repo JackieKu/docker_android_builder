@@ -1,8 +1,6 @@
 FROM ubuntu:16.04
 MAINTAINER Kaichieh Ku <kjackie@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
-
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
     && dpkg-reconfigure -p critical dash
 
