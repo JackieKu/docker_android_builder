@@ -1,4 +1,6 @@
-FROM ubuntu:16.04
+ARG BASE_IMAGE=ubuntu:18.04
+
+FROM ${BASE_IMAGE}
 MAINTAINER Kaichieh Ku <kjackie@gmail.com>
 
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
@@ -41,6 +43,8 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
 RUN chmod 755 /usr/local/bin/repo
