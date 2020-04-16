@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ubuntu:18.04
+ARG BASE_IMAGE=ubuntu:16.04
 
 FROM ${BASE_IMAGE}
 MAINTAINER Kaichieh Ku <kjackie@gmail.com>
