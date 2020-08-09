@@ -2,9 +2,6 @@ ARG BASE_IMAGE=ubuntu:18.04
 
 FROM ${BASE_IMAGE}
 
-RUN echo "dash dash/sh boolean false" | debconf-set-selections \
-    && dpkg-reconfigure -p critical dash
-
 RUN apt-get update && apt-get -y --no-install-recommends install \
     bc \
     bison \
@@ -43,6 +40,8 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN echo "dash dash/sh boolean false" | debconf-set-selections \
+    && dpkg-reconfigure --frontend=noninteractive dash
 RUN ln -snf ../proc/self/mounts /etc/mtab
 
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
