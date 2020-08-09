@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ubuntu:18.04
+ARG BASE_IMAGE=debian:10-slim
 
 FROM ${BASE_IMAGE}
 
@@ -38,10 +38,10 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     zip \
     zlib1g-dev \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+        /usr/share/doc/* /usr/share/groff/* /usr/share/info/* /usr/share/linda/* /usr/share/man/*
 
-RUN echo "dash dash/sh boolean false" | debconf-set-selections \
-    && dpkg-reconfigure --frontend=noninteractive dash
+RUN ln -snf bash /bin/sh
 RUN ln -snf ../proc/self/mounts /etc/mtab
 
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
