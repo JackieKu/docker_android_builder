@@ -1,7 +1,6 @@
 ARG BASE_IMAGE=ubuntu:18.04
 
 FROM ${BASE_IMAGE}
-MAINTAINER Kaichieh Ku <kjackie@gmail.com>
 
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
     && dpkg-reconfigure -p critical dash
