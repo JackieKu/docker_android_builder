@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=debian:10-slim
+ARG BASE_IMAGE=openjdk:8-slim
 
 FROM ${BASE_IMAGE}
 
@@ -26,7 +26,6 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     libxml2 \
     libxml2-utils \
     lzop \
-    openjdk-8-jdk \
     pngcrush \
     python \
     python3 \
